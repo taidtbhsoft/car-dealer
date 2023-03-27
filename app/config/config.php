@@ -12,4 +12,4 @@
     define('URLROOT', 'http://localhost/car-dealer');
 
     //Sitename
-    define('SITENAME', 'Login & Register script');
+    define('SITENAME', 'Car dealer');

@@ -2,6 +2,10 @@
 class Vehicles extends Controller {
     public function __construct() {
         $this->vehicleModel = $this->model('Vehicle');
+        if(!isset($_SESSION['user_id'])) {
+            echo "Permission denied";
+            die;
+        }
     }
 
     public function Index() {
