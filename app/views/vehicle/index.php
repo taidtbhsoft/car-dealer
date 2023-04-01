@@ -1,17 +1,3 @@
-<?php
-   require APPROOT . '/views/includes/head.php';
-?>
-
-<div class="navbar dark">
-    <?php
-       require APPROOT . '/views/includes/navigation.php';
-    ?>
-</div>
-<style>
-    .top-nav ul {
-    top: 20% !important;
-    }
-</style>
 <div class="m-5">
     <!-- root -->
     <div class="row mb-3">

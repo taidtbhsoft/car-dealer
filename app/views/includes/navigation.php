@@ -1,7 +1,7 @@
 <nav class="top-nav">
     <ul>
         <li>
-            <a href="<?php echo URLROOT; ?>/index">Home</a>
+            <a href="<?php echo URLROOT; ?>/">Home</a>
         </li>
         <?php if(isset($_SESSION['user_id'])) : ?>
         <li>

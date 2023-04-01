@@ -25,3 +25,8 @@
 </head>
 
 <body>
+<div class="navbar">
+    <?php
+       require_once VIEWS_DIR . 'includes/navigation.php';
+    ?>
+</div>

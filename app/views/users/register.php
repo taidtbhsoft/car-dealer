@@ -1,17 +1,3 @@
-<?php
-   require APPROOT . '/views/includes/head.php';
-?>
-
-<div class="navbar">
-    <?php
-       require APPROOT . '/views/includes/navigation.php';
-    ?>
-</div>
-<style>
-    .top-nav ul {
-    top: 20% !important;
-    }
-</style>
 <div class="container-login">
     <div class="wrapper-login">
         <h2>Register</h2>

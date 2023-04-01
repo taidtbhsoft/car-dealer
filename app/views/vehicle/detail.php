@@ -1,27 +1,10 @@
-<?php
-   require APPROOT . '/views/includes/head.php';
-?>
-
-<div class="navbar dark">
-    <?php
-       require APPROOT . '/views/includes/navigation.php';
-    ?>
-</div>
-<?php
-   $vehicle = $data['vehicle'];
-?>
-
-<style>
-    .top-nav ul {
-    top: 20% !important;
-    }
-</style>
 <div class="mx-5 mt-3">
     <a href="<?php echo URLROOT."/vehicles/index";?>">
         <h4>Back to list</h4>
     </a>
 </div>
 <div class="row m-5">
+    <?php extract($data);?>
    <?php if(empty($vehicle)):?>
       <div>Vehicle was not found</div>
    <?php else: ?>

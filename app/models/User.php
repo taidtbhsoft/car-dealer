@@ -1,52 +1,50 @@
 <?php
-class User {
-    private $db;
-    public function __construct() {
-        $this->db = new Database;
+
+function registerFunc($data)
+{
+    extract($data);
+    $password = sha1($password);
+    query("INSERT INTO users (username, email, password) VALUES('{$username}', '{$email}', '{$password}')");
+
+    //Execute function
+    try {
+        execute();
+    } catch (Exception $e) {
+        die("Oh noes! There's an error in the query!");
     }
+}
 
-    public function register($data) {
-        $this->db->query('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
+function loginFunc($username, $password)
+{
+    query("SELECT * FROM users WHERE username = '{$username}'");
 
-        //Bind values
-        $this->db->bind(':username', $data['username']);
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', sha1($data['password']));
+    $row = single();
 
-        //Execute function
-        try {
-        return $this->db->execute();
-        } catch (Exception $e) {
-            die("Oh noes! There's an error in the query!");
-        }
+    $hashedPassword = $row->password;
+
+    if (sha1($password) == $hashedPassword) {
+        return $row;
+    } else {
+        return false;
     }
+}
 
-    public function login($username, $password) {
-        $this->db->query('SELECT * FROM users WHERE username = :username');
+//Find user by email. Email is passed in by the Controller.
+function findUserByEmailFunc($email)
+{
+    //Prepared statement
+    query("SELECT * FROM users WHERE email = '{$email}'");
 
-        //Bind value
-        $this->db->bind(':username', $username);
+    //Check if email is already registered
+    return rowCount();
+}
 
-        $row = $this->db->single();
+//Find user by username. username is passed in by the Controller.
+function findUserByUsernameFunc($username)
+{
+    //Prepared statement
+    query("SELECT * FROM users WHERE username = '{$username}'");
 
-        $hashedPassword = $row->password;
-
-        if (sha1($password) == $hashedPassword) {
-            return $row;
-        } else {
-            return false;
-        }
-    }
-
-    //Find user by email. Email is passed in by the Controller.
-    public function findUserByEmail($email) {
-        //Prepared statement
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-
-        //Email param will be binded with the email variable
-        $this->db->bind(':email', $email);
-
-        //Check if email is already registered
-        return $this->db->rowCount();
-    }
+    //Check if username is already registered
+    return rowCount();
 }
